@@ -1,3 +1,4 @@
+- open terminal and navigate into the project directory
 - First run the db:create, db:migrate and db:seed commands
 - then run the server with 'rails s' (the server has to be run on port 3000)
-- start the npm server (instructions are in the readme of the booking_frontend project)
+- start the npm server (instructions are in the readme of the booking_frontend repository)
