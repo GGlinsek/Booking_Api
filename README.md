@@ -1,24 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- First run the db:create, db:migrate and db:seed commands
+- then run the server with 'rails s' (the server has to be run on port 3000)
+- start the npm server (instructions are in the readme of the booking_frontend project)
