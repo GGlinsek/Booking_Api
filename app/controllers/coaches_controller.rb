@@ -1,5 +1,5 @@
 class CoachesController < ApplicationController
-  before_action :set_coach, only: %i[ show update destroy ]
+  before_action :set_coach, only: %i[ show update destroy bookings]
 
   def index
     @coaches = Coach.all
@@ -9,6 +9,11 @@ class CoachesController < ApplicationController
 
   def show
     render json: @coach
+  end
+
+  def bookings
+    @bookings = @coach.bookings
+    render json: @bookings
   end
 
   def update

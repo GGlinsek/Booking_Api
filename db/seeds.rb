@@ -10,17 +10,22 @@
 
 require 'csv'
 
+CoachAvailability.delete_all
+
 CSV.foreach(Rails.root.join('db', 'coach_availabilities.csv'), headers: true) do |row|
   coach_name = row['Name']
   timezone = row['Timezone']
   day_of_week = row['Day of Week']
+  timezone = timezone.split(") ")[1]
   available_at = Time.parse(row['Available at'])
   available_until = Time.parse(row['Available until'])
 
-  # Find or create the coach by name
+
   coach = Coach.find_or_create_by(name: coach_name)
 
-  # Create the coach availability
+  available_at = Time.new.in_time_zone(timezone).change(hour: available_at.hour, min: available_at.min)
+  available_until = Time.new.in_time_zone(timezone).change(hour: available_until.hour, min: available_until.min)
+
   coach.coach_availabilities.create(timezone: timezone, day_of_week: day_of_week, start_at: available_at, end_at: available_until)
 end
 

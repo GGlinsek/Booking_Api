@@ -8,7 +8,18 @@ class BookingsController < ApplicationController
   end
 
   def show
+
     render json: @booking
+  end
+
+  def create
+    @booking = Booking.new(booking_params)
+    @booking.end_at = @booking.start_at + 30.minutes
+    if @booking.save
+      render json: {message: "Successfully saved the booking"}
+    else
+      render json: {message: "Something went wrong. Please try again"}
+    end
   end
 
   def update
@@ -30,6 +41,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:name, :coach_id, :start_at, :end_at)
+    params.require(:booking).permit(:name, :coach_id, :start_at, :email)
   end
 end
